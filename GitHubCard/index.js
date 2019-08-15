@@ -25,11 +25,11 @@
 */
 
 const followersArray = [
-  'tetondan',
-  'dustinmyers',
-  'justsml',
-  'luishrd',
-  'bigknell'
+  'spettigrew',
+  'krboelter',
+  'scottmm374',
+  'nickdurbin',
+  'clifhodges13'
 ];
 
 function GithubCard(githubInfo) {
@@ -89,11 +89,27 @@ axios
     const mikeyCard = GithubCard(mikey);
     console.log(mikeyCard);
     const cards = document.querySelector('.cards');
-    cards.appendChild(mikeyCard);
+    cards.prepend(mikeyCard);
   })
   .catch(error => {
     console.log(error);
   });
+
+followersArray.forEach(follower => {
+  axios
+    .get(`https://api.github.com/users/${follower}`)
+    .then(response => {
+      let follower = response.data;
+
+      const followerCard = GithubCard(follower);
+      console.log(followerCard);
+      const cards = document.querySelector('.cards');
+      cards.appendChild(followerCard);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
