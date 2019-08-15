@@ -2,14 +2,7 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-axios
-  .get('https://api.github.com/users/mikeyjwilliams')
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -31,7 +24,13 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
+];
 
 function GithubCard(githubInfo) {
   const card = document.createElement('div');
@@ -74,7 +73,27 @@ function GithubCard(githubInfo) {
   const following = document.createElement('p');
   following.textContent = `Following: ${githubInfo.following}`;
   cardInfo.appendChild(following);
+
+  const bio = document.createElement('p');
+  bio.textContent = `Bio: ${githubInfo.bio}`;
+  cardInfo.appendChild(bio);
+
+  return card;
 }
+
+axios
+  .get('https://api.github.com/users/mikeyjwilliams')
+  .then(response => {
+    const mikey = response.data;
+
+    const mikeyCard = GithubCard(mikey);
+    console.log(mikeyCard);
+    const cards = document.querySelector('.cards');
+    cards.appendChild(mikeyCard);
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
