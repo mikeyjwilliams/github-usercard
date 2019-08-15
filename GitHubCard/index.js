@@ -77,6 +77,7 @@ function GithubCard(githubInfo) {
   const bio = document.createElement('p');
   bio.textContent = `Bio: ${githubInfo.bio}`;
   cardInfo.appendChild(bio);
+  GitHubCalendar('');
 
   return card;
 }
