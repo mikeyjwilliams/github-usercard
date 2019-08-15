@@ -48,7 +48,32 @@ function GithubCard(githubInfo) {
   const name = document.createElement('h3');
   name.classList.add('name');
   name.textContent = githubInfo.name;
-  card.appendChild(name);
+  cardInfo.appendChild(name);
+
+  const username = document.createElement('p');
+  username.classList.add('username');
+  username.textContent = githubInfo.login;
+  cardInfo.appendChild(username);
+
+  const location = document.createElement('p');
+  location.textContent = `Location ${githubInfo.location}`;
+  cardInfo.appendChild(location);
+
+  const profile = document.createElement('p');
+  const profileLink = document.createElement('a');
+  profile.textContent = 'Profile:';
+  profileLink.src = githubInfo.html_url;
+  profile.textContent = githubInfo.html_url;
+  profile.appendChild(profileLink);
+  cardInfo.appendChild(profile);
+
+  const followers = document.createElement('p');
+  followers.textContent = `Followers: ${githubInfo.followers}`;
+  cardInfo.appendChild(followers);
+
+  const following = document.createElement('p');
+  following.textContent = `Following: ${githubInfo.following}`;
+  cardInfo.appendChild(following);
 }
 
 /* Step 3: Create a function that accepts a single object as its only argument,
