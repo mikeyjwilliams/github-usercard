@@ -87,7 +87,7 @@ axios
     const mikey = response.data;
 
     const mikeyCard = GithubCard(mikey);
-    console.log(mikeyCard);
+
     const cards = document.querySelector('.cards');
     cards.prepend(mikeyCard);
   })
@@ -102,7 +102,7 @@ followersArray.forEach(follower => {
       let follower = response.data;
 
       const followerCard = GithubCard(follower);
-      console.log(followerCard);
+
       const cards = document.querySelector('.cards');
       cards.appendChild(followerCard);
     })
